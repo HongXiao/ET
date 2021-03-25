@@ -16,7 +16,7 @@ namespace ET
 				{
 					continue;
 				}
-				Unit unit = UnitFactory.Create(session.Domain, unitInfo);
+				Unit unit = await UnitFactory.Create(session.Domain, unitInfo);
 			}
 
 			await ETTask.CompletedTask;

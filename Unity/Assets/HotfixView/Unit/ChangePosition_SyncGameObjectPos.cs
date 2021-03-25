@@ -6,8 +6,9 @@ namespace ET
     {
         protected override async ETTask Run(EventType.ChangePosition args)
         {
-            Transform transform = args.Unit.GetComponent<GameObjectComponent>().GameObject.transform;
-            transform.position = args.Unit.Position;
+            GameObject go = args.Unit.GetComponent<GameObjectComponent>().GameObject;
+            if (go != null)
+                go.transform.position = args.Unit.Position;
             await ETTask.CompletedTask;
         }
     }

@@ -9,8 +9,8 @@ namespace ET
         public override async ETTask<UI> OnCreate(UIComponent uiComponent)
         {
             await ETTask.CompletedTask;
-            ResourcesComponent.Instance.LoadBundle(UIType.UILobby.StringToAB());
-            GameObject bundleGameObject = (GameObject) ResourcesComponent.Instance.GetAsset(UIType.UILobby.StringToAB(), UIType.UILobby);
+            ResourcesComponent.Instance.LoadBundle(UIType.UILobby);
+            GameObject bundleGameObject = (GameObject) ResourcesComponent.Instance.GetAsset(UIType.UILobby, UIType.UILobby);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UI ui = EntityFactory.CreateWithParent<UI, string, GameObject>(uiComponent, UIType.UILobby, gameObject);
 
@@ -20,7 +20,7 @@ namespace ET
 
         public override void OnRemove(UIComponent uiComponent)
         {
-            ResourcesComponent.Instance.UnloadBundle(UIType.UILobby.StringToAB());
+            ResourcesComponent.Instance.UnloadBundle(UIType.UILobby);
         }
     }
 }
