@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
 using ProtoBuf;
@@ -7,66 +6,20 @@ namespace ET
 {
     [ProtoContract]
     [Config]
-    public partial class StartMachineConfigCategory : ProtoObject
+    public partial class StartMachineConfigCategory : ConfigCategory<StartMachineConfigCategory, StartMachineConfig>
     {
-        public static StartMachineConfigCategory Instance;
-		
-        [ProtoIgnore]
-        [BsonIgnore]
-        private Dictionary<int, StartMachineConfig> dict = new Dictionary<int, StartMachineConfig>();
-		
         [BsonElement]
         [ProtoMember(1)]
-        private List<StartMachineConfig> list = new List<StartMachineConfig>();
+        protected override List<StartMachineConfig> list { get; set; } = new List<StartMachineConfig>();
 		
-        public StartMachineConfigCategory()
+        [ProtoAfterDeserialization]
+        public override void AfterDeserialization()
         {
-            Instance = this;
-        }
-		
-		[ProtoAfterDeserialization]
-        public void AfterDeserialization()
-        {
-            foreach (StartMachineConfig config in list)
-            {
-                this.dict.Add(config.Id, config);
-            }
-            list.Clear();
-            this.EndInit();
-        }
-		
-        public StartMachineConfig Get(int id)
-        {
-            this.dict.TryGetValue(id, out StartMachineConfig item);
-
-            if (item == null)
-            {
-                throw new Exception($"配置找不到，配置表名: {nameof (StartMachineConfig)}，配置id: {id}");
-            }
-
-            return item;
-        }
-		
-        public bool Contain(int id)
-        {
-            return this.dict.ContainsKey(id);
-        }
-
-        public Dictionary<int, StartMachineConfig> GetAll()
-        {
-            return this.dict;
-        }
-
-        public StartMachineConfig GetOne()
-        {
-            if (this.dict == null || this.dict.Count <= 0)
-            {
-                return null;
-            }
-            return this.dict.Values.GetEnumerator().Current;
+            base.AfterDeserialization();
         }
     }
-
+    
+    
     [ProtoContract]
 	public partial class StartMachineConfig: ProtoObject, IConfig
 	{

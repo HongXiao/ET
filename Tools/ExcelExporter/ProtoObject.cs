@@ -15,7 +15,7 @@ namespace ET
         }
 
         [ProtoAfterDeserialization]
-        public virtual void AfterDeserialization()
+        public void AfterDeserialization()
         {
             this.EndInit();
         }

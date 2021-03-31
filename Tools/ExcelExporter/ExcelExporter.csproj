@@ -42,6 +42,9 @@
       <Compile Include="..\..\Unity\Assets\Model\Module\Config\ConfigAttribute.cs">
         <Link>ConfigAttribute.cs</Link>
       </Compile>
+      <Compile Include="..\..\Unity\Assets\Model\Module\Config\ConfigCategory.cs">
+        <Link>ConfigCategory.cs</Link>
+      </Compile>
       <Compile Include="..\..\Unity\Assets\Model\Module\Config\IConfig.cs">
         <Link>IConfig.cs</Link>
       </Compile>
