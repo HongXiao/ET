@@ -32,17 +32,53 @@ namespace ET
 
         public static void Proto2CS()
         {
-            msgOpcode.Clear();
-            Proto2CS("ET", "../../../Proto/InnerMessage.proto", serverMessagePath, "InnerOpcode", 10000);
-            GenerateOpcode("ET", "InnerOpcode", serverMessagePath);
-            
-            Proto2CS("ET", "../../../Proto/OuterMessage.proto", serverMessagePath, "OuterOpcode", 20000);
-            GenerateOpcode("ET", "OuterOpcode", serverMessagePath);
-            
-            Proto2CS("ET", "../../../Proto/OuterMessage.proto", clientMessagePath, "OuterOpcode", 20000);
-            GenerateOpcode("ET", "OuterOpcode", clientMessagePath);
-            
- 
+            try
+            {
+                msgOpcode.Clear();
+                int innerStartOpcode = 10000;//内网 10000～20000
+                int outerStartOpcode = 20000;//外网 20000～40000
+                foreach (string path in Directory.GetFiles("../../../Proto", "*.proto"))
+                {
+                    using Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                    string fileName = Path.GetFileNameWithoutExtension(path);
+                    if (!fileName.EndsWith("InnerMessage") && !fileName.EndsWith("OuterMessage"))
+                    {
+                        Console.WriteLine($"Error Proto file name end with(InnerMessage/OuterMessage)!!! fileName:{fileName}");
+                        continue;
+                    }
+                    bool isInner = fileName.EndsWith("InnerMessage");
+                    int startOpcode;
+                    //非内网需要生成前后端代码 否则只生成后端代码
+                    if (!isInner)
+                    {
+                        startOpcode = outerStartOpcode;
+                        if (startOpcode >= 40000)
+                            Console.WriteLine($"Error OuterMessage Proto Opcode:({startOpcode} >= 40000)!!! fileName:{fileName}");
+                        outerStartOpcode += 1000;
+                        Export("ET", fileName, clientMessagePath, startOpcode);
+                    }
+                    else
+                    {
+                        startOpcode = innerStartOpcode;
+                        if (startOpcode >= 20000)
+                            Console.WriteLine($"Error InnerMessage Proto Opcode:({startOpcode} >= 20000) !!! fileName:{fileName}");
+                        innerStartOpcode += 1000;
+                    }
+                    Export("ET", fileName, serverMessagePath, startOpcode);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        public static void Export(string ns, string protoName, string outputPath, int startOpcode)
+        {
+            Console.WriteLine($"Export Proto {ns}.{protoName} startOpcode:{startOpcode} path:{outputPath}{protoName}.cs");
+            string opcodeName = protoName.Replace("Message", "Opcode");
+            Proto2CS(ns, $"../../../Proto/{protoName}.proto", outputPath, opcodeName, startOpcode);
+            GenerateOpcode(ns, opcodeName, outputPath);
         }
 
         public static void Proto2CS(string ns, string protoName, string outputPath, string opcodeClassName, int startOpcode)
