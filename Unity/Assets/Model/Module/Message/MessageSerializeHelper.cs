@@ -6,6 +6,8 @@ namespace ET
 {
     public static class MessageSerializeHelper
     {
+        public const ushort InnerMaxOpcode = 20000;
+        
         public const ushort PbMaxOpcode = 40000;
         
         public const ushort JsonMinOpcode = 51000;

@@ -24,6 +24,13 @@ namespace ET
 
     public static class InnerProto2CS
     {
+        private const ushort InnerMinOpcode = 10000;
+        private const ushort InnerMaxOpcode = 20000;
+        private const ushort PbMaxOpcode = 40000;
+        private const ushort JsonMinOpcode = 51000;
+
+        private const ushort ModuleStep = 1000;
+        
         private const string protoPath = ".";
         private const string clientMessagePath = "../../../Unity/Assets/Model/Generate/Message/";
         private const string serverMessagePath = "../../../Server/Model/Generate/Message/";
@@ -35,10 +42,10 @@ namespace ET
             try
             {
                 msgOpcode.Clear();
-                int innerOpcode = 10000;//内网 [10000,20000)
-                int outerOpcode = 20000;//外网 [20000,40000)
-                int jsonOpcode = 51000;//Json协议 [51000,65535)
-                int entityOpcode = 40000;//内网带Entity协议 [40000,51000)
+                int innerOpcode = InnerMinOpcode;//内网 [10000,20000)
+                int outerOpcode = InnerMaxOpcode;//外网 [20000,40000)
+                int jsonOpcode = JsonMinOpcode;//Json协议 [51000,65535)
+                int entityOpcode = PbMaxOpcode;//内网带Entity协议 [40000,51000)
                 foreach (string path in Directory.GetFiles("../../../Proto", "*.proto"))
                 {
                     using Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
@@ -51,25 +58,25 @@ namespace ET
                     }
                     if (fileName.EndsWith("InnerMessage"))//内网消息
                     {
-                        Export("ET", fileName, serverMessagePath, innerOpcode, 20000);
-                        innerOpcode += 1000;
+                        Export("ET", fileName, serverMessagePath, innerOpcode, InnerMaxOpcode);
+                        innerOpcode += ModuleStep;
                     }
                     else if (fileName.EndsWith("EntityMessage"))//内网带Entity消息
                     {
-                        Export("ET", fileName, serverMessagePath, entityOpcode, 51000);
-                        entityOpcode += 1000;
+                        Export("ET", fileName, serverMessagePath, entityOpcode, JsonMinOpcode);
+                        entityOpcode += ModuleStep;
                     }
                     else if (fileName.EndsWith("OuterMessage"))//外网消息
                     {
-                        Export("ET", fileName, clientMessagePath, outerOpcode, 40000);
-                        Export("ET", fileName, serverMessagePath, outerOpcode, 40000);
-                        outerOpcode += 1000;
+                        Export("ET", fileName, clientMessagePath, outerOpcode, PbMaxOpcode);
+                        Export("ET", fileName, serverMessagePath, outerOpcode, PbMaxOpcode);
+                        outerOpcode += ModuleStep;
                     }          
                     else if (fileName.EndsWith("JsonMessage"))//Json消息
                     {
-                        Export("ET", fileName, clientMessagePath, jsonOpcode, 65535);
-                        Export("ET", fileName, serverMessagePath, jsonOpcode, 65535);
-                        jsonOpcode += 1000;
+                        Export("ET", fileName, clientMessagePath, jsonOpcode, ushort.MaxValue);
+                        Export("ET", fileName, serverMessagePath, jsonOpcode, ushort.MaxValue);
+                        jsonOpcode += ModuleStep;
                     }
                     else//消息命名不合规范
                     {
