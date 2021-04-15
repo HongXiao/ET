@@ -11,6 +11,7 @@ namespace ET
             {
                 string key = Path.GetFileNameWithoutExtension(file);
                 output[key] = File.ReadAllBytes(file);
+                Log.Debug($"加载配置表 {key}");
             }
         }
     }

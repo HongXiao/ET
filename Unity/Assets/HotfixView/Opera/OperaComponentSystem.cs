@@ -45,8 +45,7 @@ namespace ET
         {
             try
             {
-                M2C_TestActorResponse response = (M2C_TestActorResponse)await self.Domain.GetComponent<SessionComponent>().Session.Call(
-                    new C2M_TestActorRequest() { Info = "actor rpc request" });
+                M2C_TestActorResponse response = (M2C_TestActorResponse)await self.Domain.GetComponent<SessionComponent>().Session.Call(new C2M_TestActorRequest() { Info = "actor rpc request" });
                 Log.Info(response.Info);
             }
             catch (Exception e)

@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\Config\RecastNavData\Map_Navmesh_10000.bin">
+        <Link>Config\RecastNavData\Map_Navmesh_10000.bin</Link>
+      </Content>
+      <Content Include="..\..\Config\StartMachineConfigCategory.bytes">
+        <Link>Config\StartMachineConfigCategory.bytes</Link>
+      </Content>
+      <Content Include="..\..\Config\StartProcessConfigCategory.bytes">
+        <Link>Config\StartProcessConfigCategory.bytes</Link>
+      </Content>
+      <Content Include="..\..\Config\StartSceneConfigCategory.bytes">
+        <Link>Config\StartSceneConfigCategory.bytes</Link>
+      </Content>
+      <Content Include="..\..\Config\StartZoneConfigCategory.bytes">
+        <Link>Config\StartZoneConfigCategory.bytes</Link>
+      </Content>
+      <Content Include="..\..\Config\UnitConfigCategory.bytes">
+        <Link>Config\UnitConfigCategory.bytes</Link>
+      </Content>
+      <Content Include="..\..\Excel\StartMachineConfig.xlsx">
+        <Link>Excel\StartMachineConfig.xlsx</Link>
+      </Content>
+      <Content Include="..\..\Excel\StartProcessConfig.xlsx">
+        <Link>Excel\StartProcessConfig.xlsx</Link>
+      </Content>
+      <Content Include="..\..\Excel\StartSceneConfig.xlsx">
+        <Link>Excel\StartSceneConfig.xlsx</Link>
+      </Content>
+      <Content Include="..\..\Excel\StartZoneConfig.xlsx">
+        <Link>Excel\StartZoneConfig.xlsx</Link>
+      </Content>
+      <Content Include="..\..\Excel\UnitConfig.xlsx">
+        <Link>Excel\UnitConfig.xlsx</Link>
+      </Content>
+      <Content Include="..\..\Proto\CommonMessage.proto">
+        <Link>Proto\CommonMessage.proto</Link>
+      </Content>
+      <Content Include="..\..\Proto\EntityMessage.proto">
+        <Link>Proto\EntityMessage.proto</Link>
+      </Content>
+      <Content Include="..\..\Proto\GameInnerMessage.proto">
+        <Link>Proto\GameInnerMessage.proto</Link>
+      </Content>
+      <Content Include="..\..\Proto\GameMessage.proto">
+        <Link>Proto\GameMessage.proto</Link>
+      </Content>
+      <Content Include="..\..\Proto\InnerMessage.proto">
+        <Link>Proto\InnerMessage.proto</Link>
+      </Content>
+      <Content Include="..\..\Proto\JsonMessage.proto">
+        <Link>Proto\JsonMessage.proto</Link>
+      </Content>
+      <Content Include="..\..\Proto\OuterMessage.proto">
+        <Link>Proto\OuterMessage.proto</Link>
+      </Content>
+    </ItemGroup>
+
+</Project>

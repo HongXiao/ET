@@ -19,12 +19,14 @@ namespace ET
 
 		public TService(ThreadSynchronizationContext threadSynchronizationContext, ServiceType serviceType)
 		{
+			Log.Info($"New TService Type:{ServiceType}");
 			this.ServiceType = serviceType;
 			this.ThreadSynchronizationContext = threadSynchronizationContext;
 		}
 
 		public TService(ThreadSynchronizationContext threadSynchronizationContext, IPEndPoint ipEndPoint, ServiceType serviceType)
 		{
+			Log.Info($"New TService Type:{ServiceType} IP:{ipEndPoint}");
 			this.ServiceType = serviceType;
 			this.ThreadSynchronizationContext = threadSynchronizationContext;
 			

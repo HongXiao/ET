@@ -348,7 +348,7 @@ namespace ET
             assetBundleName = assetBundleName.ToLower();
 
             string[] dependencies = GetSortedDependencies(assetBundleName);
-            Log.Debug($"-----------dep load start {assetBundleName} dep: {dependencies.ToList().ListToString()}");
+            //Log.Debug($"-----------dep load start {assetBundleName} dep: {dependencies.ToList().ListToString()}");
             foreach (string dependency in dependencies)
             {
                 if (string.IsNullOrEmpty(dependency))
@@ -359,7 +359,7 @@ namespace ET
                 this.LoadOneBundle(dependency);
             }
 
-            Log.Debug($"-----------dep load finish {assetBundleName} dep: {dependencies.ToList().ListToString()}");
+            //Log.Debug($"-----------dep load finish {assetBundleName} dep: {dependencies.ToList().ListToString()}");
         }
 
         public void AddResource(string bundleName, string assetName, UnityEngine.Object resource)
@@ -372,7 +372,7 @@ namespace ET
             }
 
             dict[assetName] = resource;
-            Log.Debug($"---------------Add Resource bundleName:{bundleName} assetName:{assetName}");
+            //Log.Debug($"---------------Add Resource bundleName:{bundleName} assetName:{assetName}");
         }
 
         private void LoadOneBundle(string assetBundleName)
@@ -382,7 +382,7 @@ namespace ET
             if (this.bundles.TryGetValue(assetBundleName, out abInfo))
             {
                 ++abInfo.RefCount;
-                Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
+                //Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
                 return;
             }
             
@@ -404,7 +404,7 @@ namespace ET
                 {
                     abInfo = EntityFactory.CreateWithParent<ABInfo, string, AssetBundle>(this, assetBundleName, null);
                     this.bundles[assetBundleName] = abInfo;
-                    Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
+                    //Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
                 }
                 else
                 {
@@ -446,7 +446,7 @@ namespace ET
             abInfo = EntityFactory.CreateWithParent<ABInfo, string, AssetBundle>(this, assetBundleName, assetBundle);
             this.bundles[assetBundleName] = abInfo;
             
-            Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
+            //Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
         }
 
         /// <summary>
@@ -460,7 +460,7 @@ namespace ET
             assetBundleName = assetBundleName.BundleNameToLower();
             
             string[] dependencies = GetSortedDependencies(assetBundleName);
-            Log.Debug($"-----------dep load async start {assetBundleName} dep: {dependencies.ToList().ListToString()}");
+            //Log.Debug($"-----------dep load async start {assetBundleName} dep: {dependencies.ToList().ListToString()}");
             var tasts = ListComponent<ETTask>.Create();
 
             async ETTask loadDependency(string dependency)
@@ -489,7 +489,7 @@ namespace ET
             if (this.bundles.TryGetValue(assetBundleName, out abInfo))
             {
                 ++abInfo.RefCount;
-                Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
+                //Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
                 return;
             }
 
@@ -535,7 +535,7 @@ namespace ET
                     {
                         abInfo = EntityFactory.CreateWithParent<ABInfo, string, AssetBundle>(this, assetBundleName, null);
                         this.bundles[assetBundleName] = abInfo;
-                        Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
+                        //Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
                     }
                     else
                     {
@@ -591,7 +591,7 @@ namespace ET
             abInfo = EntityFactory.CreateWithParent<ABInfo, string, AssetBundle>(this, assetBundleName, assetBundle);
             this.bundles[assetBundleName] = abInfo;
             
-            Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
+            //Log.Debug($"---------------load one bundle {assetBundleName} refcount: {abInfo.RefCount}");
         }
 
         public string DebugString()

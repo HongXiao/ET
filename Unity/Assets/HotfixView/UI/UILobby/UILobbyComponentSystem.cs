@@ -11,6 +11,8 @@ namespace ET
 			
             self.enterMap = rc.Get<GameObject>("EnterMap");
             self.enterMap.GetComponent<Button>().onClick.AddListener(self.EnterMap);
+            self.backLogin = rc.Get<GameObject>("BackLogin");
+            self.backLogin?.GetComponent<Button>().onClick.AddListener(self.BackLogin);
             self.text = rc.Get<GameObject>("Text").GetComponent<Text>();
         }
     }
@@ -20,6 +22,11 @@ namespace ET
         public static void EnterMap(this UILobbyComponent self)
         {
             MapHelper.EnterMapAsync(self.ZoneScene(), "Map").Coroutine();
+        }
+
+        public static void BackLogin(this UILobbyComponent self)
+        {
+            LoginHelper.BackLogin(self.ZoneScene());
         }
     }
 }

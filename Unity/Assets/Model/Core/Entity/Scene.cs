@@ -27,7 +27,7 @@
             this.Name = name;
             this.IsCreate = true;
             
-            Log.Info($"scene create: {this.SceneType} {this.Name} {this.Id} {this.InstanceId} {this.Zone}");
+            Log.Info($"scene create Type: {this.SceneType} Name:{this.Name} Id:{this.Id} IId:{this.InstanceId} Zone:{this.Zone}");
         }
 
         public Scene(long id, long instanceId, int zone, SceneType sceneType, string name)
@@ -39,7 +39,7 @@
             this.Name = name;
             this.IsCreate = true;
             
-            Log.Info($"scene create: {this.SceneType} {this.Name} {this.Id} {this.InstanceId} {this.Zone}");
+            Log.Info($"scene create Type: {this.SceneType} Name:{this.Name} Id:{this.Id} IId:{this.InstanceId} Zone:{this.Zone}");
         }
 
         public override void Dispose()

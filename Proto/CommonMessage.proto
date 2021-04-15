@@ -1,0 +1,53 @@
+syntax = "proto3";
+package ET;
+
+//账户信息
+message AccountData // IMessage
+{
+	int64 UserId = 1;//玩家Id
+	string Name = 2;//真实姓名
+	string IdCard = 3;//身份证号
+	int64 CreateTime = 4;//注册账户时间
+	
+	Identify Identify = 10; //账号信息
+	LastLoginData LastLogin = 11;//最后登陆
+	BlockData Block = 12;//封号信息
+	repeated SafeQuestion Answers = 13;//安全问答
+}
+
+//账号信息
+message Identify
+{
+	string WeChat = 1;//微信
+	string QQ = 2;//QQ
+	string Phone = 3;//手机
+	string Email = 4;//邮箱
+	string Tourist = 5;//游客
+	string Account  = 6;//账号
+	string Password = 7;//密码
+}
+
+//最近登陆信息
+message LastLoginData
+{
+	int32 LoginType = 1;//最近登陆类型
+	int64 LastLoginTime = 2; //最后登陆时间
+	int64 LastLogoutTime = 3;//最后登出时间
+	string LastLoginIP = 4;//最后登陆IP
+}
+
+//账户封禁
+message BlockData
+{
+	bool Block = 1;//是否封号
+	int64 BlockTime = 2;//解封时间
+	string BlockReasons = 3;//封号原因
+	int64 DeblockTime = 4;//解封时间
+}
+
+//安全提问
+message SafeQuestion
+{
+	uint32 Index = 1;
+	string Answer = 2;
+}

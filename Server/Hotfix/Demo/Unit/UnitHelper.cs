@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
     public static class UnitHelper
     {
@@ -19,6 +21,16 @@
             }
 
             return unitInfo;
+        }
+
+        public static List<UnitInfo> CreateUnitInfo(ICollection<Unit> units)
+        {
+            List<UnitInfo> unitInfos = new List<UnitInfo>();
+            foreach (Unit unit in units)
+            {
+                unitInfos.Add(CreateUnitInfo(unit));
+            }
+            return unitInfos;
         }
     }
 }

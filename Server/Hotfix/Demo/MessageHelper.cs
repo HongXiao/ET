@@ -12,8 +12,7 @@ namespace ET
 
             foreach (Unit u in units)
             {
-                UnitGateComponent unitGateComponent = u.GetComponent<UnitGateComponent>();
-                SendActor(unitGateComponent.GateSessionActorId, message);
+                u.Send(message);
             }
         }
         

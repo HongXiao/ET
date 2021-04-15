@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
     <RootNamespace>ET</RootNamespace>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
@@ -32,6 +32,10 @@
 
     <Compile Include="..\..\Unity\Assets\Model\Demo\Move\MoveComponent.cs">
       <Link>Demo\Move\MoveComponent.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Assets\Model\Generate\ConfigPartial\AiConfig.cs">
+      <Link>Generate\ConfigPartial\AiConfig.cs</Link>
     </Compile>
 
     <Compile Include="..\..\Unity\Assets\Model\Module\Config\**\*.cs">
@@ -67,6 +71,34 @@
     <Compile Include="..\..\Unity\Assets\Model\Module\Message\MessageDispatcherComponent.cs">
       <Link>Module\Message\MessageDispatcherComponent.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\_Game\Const\EnumType.cs">
+      <Link>_Game\Const\EnumType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\_Game\Module\AI\AiComponent.cs">
+      <Link>_Game\Module\AI\AiComponent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\_Game\Module\AI\AiEntity.cs">
+      <Link>_Game\Module\AI\AiEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\_Game\Module\AI\AiHandler.cs">
+      <Link>_Game\Module\AI\AiHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\_Game\Module\AI\AiHandlerAttribute.cs">
+      <Link>_Game\Module\AI\AiHandlerAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\_Game\Module\AOI\AoiComponent.cs">
+      <Link>_Game\Module\AOI\AoiComponent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\_Game\Module\AOI\AoiEntity.cs">
+      <Link>_Game\Module\AOI\AoiEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\_Game\Module\AOI\AoiLinkedList.cs">
+      <Link>_Game\Module\AOI\AoiLinkedList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\_Game\Module\AOI\AoiNode.cs">
+      <Link>_Game\Module\AOI\AoiNode.cs</Link>
+    </Compile>
+    <Compile Remove="_Game\Module\Player\**" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Unity\Assets\Model\Module\Message\AMHandler.cs" Link="Module\Message\AMHandler.cs" />
@@ -146,5 +178,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ThirdParty\Server.ThirdParty.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="_Game\Module\Player\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="_Game\Module\Player\**" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,38 @@
-﻿namespace ET
+﻿using System;
+
+namespace ET
 {
     namespace EventType
     {
+        /// <summary>
+        /// 切换场景
+        /// </summary>
+        public struct ChangeScene
+        {
+            public Scene ZoneScene;
+            public string SceneType;
+        }
+        
+        /// <summary>
+        /// 打开提示选择界面
+        /// </summary>
+        public struct OpenMessageBox
+        {
+            public Scene ZoneScene;
+            public int MessageType;
+            public string Tips;
+            public Action<bool> CallBack;
+        }
+        
+        /// <summary>
+        /// 显示飘字提示
+        /// </summary>
+        public struct ShowTips
+        {
+            public Scene ZoneScene;
+            public string Tips;
+        }
+        
         public struct AppStart
         {
         }

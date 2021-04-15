@@ -1,0 +1,36 @@
+syntax = "proto3";
+package ET;
+
+//ResponseType G2R_GetLoginKey
+message R2G_GetLoginGateKey // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    string Account = 1;
+}
+
+message G2R_GetLoginGateKey // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+
+    int64 Key = 1;
+    int64 GateId = 2;
+}
+
+//ResponseType R2G_UserOnline
+message G2R_UserOnline // IActorRequest
+{
+    int32 RpcId = 90;
+    
+    int64 UserId = 1; //将要上线的UserId
+    int64 GateId = 2;
+}
+
+message R2G_UserOnline // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ET
@@ -44,9 +45,22 @@ namespace ET
             self.idUnits.Remove(id);
         }
 
-        public static Unit[] GetAll(this UnitComponent self)
+        public static List<Unit> GetAll(this UnitComponent self)
         {
-            return self.idUnits.Values.ToArray();
+            return self.idUnits.Values.ToList();
+        }
+        
+        public static List<Unit> GetAll(this UnitComponent self, ICollection<long> ids)
+        {
+            List<Unit> units = new List<Unit>();
+            foreach (long id in ids)
+            {
+                if (self.idUnits.TryGetValue(id, out Unit unit))
+                {
+                    units.Add(unit);
+                }
+            }
+            return units;
         }
     }
 }

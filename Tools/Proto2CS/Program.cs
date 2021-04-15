@@ -66,22 +66,22 @@ namespace ET
                         Export("ET", fileName, serverMessagePath, entityOpcode, JsonMinOpcode);
                         entityOpcode += ModuleStep;
                     }
-                    else if (fileName.EndsWith("OuterMessage"))//外网消息
-                    {
-                        Export("ET", fileName, clientMessagePath, outerOpcode, PbMaxOpcode);
-                        Export("ET", fileName, serverMessagePath, outerOpcode, PbMaxOpcode);
-                        outerOpcode += ModuleStep;
-                    }          
                     else if (fileName.EndsWith("JsonMessage"))//Json消息
                     {
                         Export("ET", fileName, clientMessagePath, jsonOpcode, ushort.MaxValue);
                         Export("ET", fileName, serverMessagePath, jsonOpcode, ushort.MaxValue);
                         jsonOpcode += ModuleStep;
                     }
-                    else//消息命名不合规范
+                    else //if (fileName.EndsWith("OuterMessage"))//外网消息
                     {
-                        Console.WriteLine($"Error Proto file name end with [XXXX](Inner/Entity/Outer/Json)Message!!! fileName:{fileName}");
-                    }
+                        Export("ET", fileName, clientMessagePath, outerOpcode, PbMaxOpcode);
+                        Export("ET", fileName, serverMessagePath, outerOpcode, PbMaxOpcode);
+                        outerOpcode += ModuleStep;
+                    }   
+                    // else//消息命名不合规范
+                    // {
+                    //     Console.WriteLine($"Error Proto file name end with [XXXX](Inner/Entity/Outer/Json)Message!!! fileName:{fileName}");
+                    // }
                 }
             }
             catch (Exception e)

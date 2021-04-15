@@ -130,6 +130,7 @@ namespace ET
 
 	}
 
+//创建Unit
 	[Message(OuterOpcode.M2C_CreateUnits)]
 	[ProtoContract]
 	public partial class M2C_CreateUnits: Object, IActorMessage
@@ -142,6 +143,22 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<UnitInfo> Units = new List<UnitInfo>();
+
+	}
+
+//销毁Unit
+	[Message(OuterOpcode.M2C_DisposeUnits)]
+	[ProtoContract]
+	public partial class M2C_DisposeUnits: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public List<long> UnitIds = new List<long>();
 
 	}
 

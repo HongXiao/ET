@@ -9,7 +9,7 @@ namespace ET
         {
             try
             {
-                G2C_EnterMap g2CEnterMap = await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2G_EnterMap()) as G2C_EnterMap;
+                G2C_EnterMap g2CEnterMap = (G2C_EnterMap) await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2G_EnterMap());
                 Game.EventSystem.Publish(new EventType.EnterMapFinish() {ZoneScene = zoneScene}).Coroutine();
             }
             catch (Exception e)

@@ -40,6 +40,7 @@ namespace ET
 
         protected Entity()
         {
+            //Log.Info($"Create--> {this.GetType()}");
         }
 
         [IgnoreDataMember]
@@ -398,7 +399,7 @@ namespace ET
             {
                 return;
             }
-
+            //Log.Info($"Dispose--> {this.GetType()}");
             EventSystem.Instance.Remove(this.InstanceId);
             this.InstanceId = 0;
 

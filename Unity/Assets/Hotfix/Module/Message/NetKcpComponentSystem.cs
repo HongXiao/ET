@@ -103,7 +103,9 @@ namespace ET
             Session session = EntityFactory.CreateWithParentAndId<Session, AService>(self, channelId, self.Service);
             session.RemoteAddress = realIPEndPoint;
             session.AddComponent<SessionIdleCheckerComponent, int>(NetThreadComponent.checkInteral);
-            
+#if !SERVER
+            session.AddComponent<SessionCallbackComponent>();
+#endif
             self.Service.GetOrCreate(session.Id, realIPEndPoint);
 
             return session;

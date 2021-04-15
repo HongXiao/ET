@@ -14,11 +14,11 @@ namespace ET
         {
         }
 
-        [ProtoAfterDeserialization]
-        public void AfterDeserialization()
-        {
-            this.EndInit();
-        }
+        // [ProtoAfterDeserialization]
+        // public void AfterDeserialization()
+        // {
+        //     this.EndInit();
+        // }
 
         public virtual void EndInit()
         {

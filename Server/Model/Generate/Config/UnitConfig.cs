@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
 using ProtoBuf;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -30,10 +30,14 @@ namespace ET
 		[ProtoMember(3, IsRequired  = true)]
 		public string Desc { get; set; }
 		[ProtoMember(4, IsRequired  = true)]
-		public int Position { get; set; }
+		public int Sex { get; set; }
 		[ProtoMember(5, IsRequired  = true)]
-		public int Height { get; set; }
+		public int Pro { get; set; }
 		[ProtoMember(6, IsRequired  = true)]
+		public int Position { get; set; }
+		[ProtoMember(7, IsRequired  = true)]
+		public int Height { get; set; }
+		[ProtoMember(8, IsRequired  = true)]
 		public int Weight { get; set; }
 
 

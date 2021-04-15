@@ -60,11 +60,19 @@ message UnitInfo
 	repeated int64 Vs = 7;
 }
 
+//创建Unit
 message M2C_CreateUnits // IActorMessage
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-    repeated UnitInfo Units = 1;
+	repeated UnitInfo Units = 1;
+}
+//销毁Unit
+message M2C_DisposeUnits // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	repeated int64 UnitIds = 1;
 }
 
 message C2M_PathfindingResult // IActorLocationMessage

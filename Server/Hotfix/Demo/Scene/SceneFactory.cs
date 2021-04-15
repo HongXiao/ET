@@ -1,6 +1,8 @@
 
 
 using System.Net;
+using ET._Game;
+using ET.AOI;
 
 namespace ET
 {
@@ -24,15 +26,13 @@ namespace ET
             {
                 case SceneType.Realm:
                     scene.AddComponent<NetKcpComponent, IPEndPoint>(startSceneConfig.OuterIPPort);
+                    scene.AddComponent<OnlineComponent>();
                     break;
                 case SceneType.Gate:
-                    scene.AddComponent<NetKcpComponent, IPEndPoint>(startSceneConfig.OuterIPPort);
-                    scene.AddComponent<PlayerComponent>();
-                    scene.AddComponent<GateSessionKeyComponent>();
+                    scene.AddComponent<GateComponent, StartSceneConfig>(startSceneConfig);
                     break;
                 case SceneType.Map:
-                    scene.AddComponent<UnitComponent>();
-                    scene.AddComponent<RecastPathComponent>();
+                    scene.AddComponent<MapComponent, StartSceneConfig>(startSceneConfig);
                     break;
                 case SceneType.Location:
                     scene.AddComponent<LocationComponent>();

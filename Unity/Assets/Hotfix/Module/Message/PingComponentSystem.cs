@@ -1,16 +1,12 @@
 using System;
+using System.Threading;
 
 namespace ET
 {
-    [ObjectSystem]
-    public class PingComponentAwakeSystem: AwakeSystem<PingComponent>
+    public static class PingComponentSystem
     {
-        public override void Awake(PingComponent self)
-        {
-            PingAsync(self).Coroutine();
-        }
-
-        private static async ETVoid PingAsync(PingComponent self)
+        //ETVoid ～ void
+        public static async void PingAsync(this PingComponent self)
         {
             Session session = self.GetParent<Session>();
             long instanceId = self.InstanceId;
@@ -52,6 +48,22 @@ namespace ET
             }
         }
     }
+    [ObjectSystem]
+    public class PingComponentAwakeSystem: AwakeSystem<PingComponent>
+    {
+        public override void Awake(PingComponent self)
+        {
+            // 1 Thread
+            self.Thread = new Thread(self.PingAsync);
+            self.Thread.Start();
+            
+            // 2 ETvoid
+            //PingAsync(self).Coroutine();
+            
+            // 3 void
+            //self.PingAsync();
+        }
+    }
 
     [ObjectSystem]
     public class PingComponentDestroySystem: DestroySystem<PingComponent>
@@ -59,6 +71,8 @@ namespace ET
         public override void Destroy(PingComponent self)
         {
             self.Ping = default;
+            self.Thread?.Abort();
+            self.Thread = null;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace ET
             
             using (var list = ListComponent<Vector3>.Create())
             {
-                unit.Domain.GetComponent<RecastPathComponent>().SearchPath(10001, unit.Position, target, list.List);
+                unit.Domain.GetComponent<RecastPathComponent>().SearchPath(10000, unit.Position, target, list.List);
 
                 List<Vector3> path = list.List;
                 if (path.Count < 2)
@@ -36,7 +36,7 @@ namespace ET
                     m2CPathfindingResult.Ys.Add(vector3.y);
                     m2CPathfindingResult.Zs.Add(vector3.z);
                 }
-                MessageHelper.Broadcast(unit, m2CPathfindingResult);
+                unit.BroadcastAOI(m2CPathfindingResult);
 
                 bool ret = await unit.GetComponent<MoveComponent>().MoveToAsync(path, speed);
                 if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop

@@ -1,0 +1,46 @@
+syntax = "proto3";
+package ET;
+
+//登陆游戏
+//ResponseType R2C_LoginGame
+message C2R_LoginGame // IRequest
+{
+  int32 RpcId = 90;
+  
+  int32 LoginType = 1;//玩家Id
+  string LoginData = 2;//真实姓名
+  string Client = 3;//客户端相关信息
+}
+
+//登陆游戏返回
+message R2C_LoginGame // IResponse
+{
+  int32 RpcId = 90;
+  int32 Error = 91;
+  string Message = 92;
+
+  string Address = 1; //Gate地址
+  int64 Key	    = 2; //Gate的验证key
+  int64 GateId = 3;  //网关服Id
+  int64 RealmId = 4; //验证服Id
+}
+
+
+//登陆游戏网关
+//ResponseType G2C_LoginGate
+message C2G_LoginGameGate // IRequest
+{
+  int32 RpcId = 90;
+  int64 Key = 1;	// Gate的验证key
+  int64 GateId = 2;//网关服Id
+  int64 RealmId = 3; //验证服Id
+}
+
+//登陆游戏网关返回
+message G2C_LoginGameGate // IResponse
+{
+  int32 RpcId = 90;
+  int32 Error = 91;
+  string Message = 92;
+  int64 PlayerId = 1;
+}

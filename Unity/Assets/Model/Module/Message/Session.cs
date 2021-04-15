@@ -162,6 +162,15 @@ namespace ET
             this.Send(request);
             return await rpcInfo.Tcs.Task;
         }
+        
+        public async ETTask<T> Call<T>(IRequest request, ETCancellationToken cancellationToken) where T : IResponse
+        {
+            return (T) await Call(request, cancellationToken);
+        }
+        public async ETTask<T> Call<T>(IRequest request) where T : IResponse
+        {
+            return (T) await Call(request);
+        }
 
         public void Reply(IResponse message)
         {

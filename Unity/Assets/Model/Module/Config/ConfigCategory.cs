@@ -1,8 +1,15 @@
 using System;
 using System.Collections.Generic;
+using ProtoBuf;
 
 namespace ET
 {
+    public enum E_ConfigType
+    {
+        None,
+        Proto,
+        Json,
+    }
 
     //[ProtoContract]
     public abstract partial class ConfigCategory<TCategory, TConfig> : ProtoObject where TCategory : ConfigCategory<TCategory, TConfig>, new() where TConfig : ProtoObject, IConfig
@@ -18,6 +25,7 @@ namespace ET
 		
         protected virtual List<TConfig> list { get; set; }
         
+        [ProtoAfterDeserialization]
         public virtual void AfterDeserialization()
         {
             //Log.Debug($"AfterDeserialization {this.GetType()}  Instance ? {Instance==null}");

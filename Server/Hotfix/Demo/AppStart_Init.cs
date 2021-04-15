@@ -10,8 +10,8 @@ namespace ET
         {
             Game.Scene.AddComponent<ConfigComponent>();
             
-            ConfigComponent.GetAllConfigBytes = LoadConfigHelper.LoadAllConfigBytes;
-            await ConfigComponent.Instance.LoadAsync();
+            //ConfigComponent.GetAllConfigBytes = LoadConfigHelper.LoadAllConfigBytes;
+            await ConfigComponent.Instance.LoadAsync(LoadConfigHelper.LoadAllConfigBytes);
 
             StartProcessConfig processConfig = StartProcessConfigCategory.Instance.Get(Game.Options.Process);
             
@@ -31,7 +31,10 @@ namespace ET
 
             Game.Scene.AddComponent<NetThreadComponent>();
             Game.Scene.AddComponent<NetInnerComponent, IPEndPoint>(processConfig.InnerIPPort);
-            
+
+            // 数据库操作组件
+            Game.Scene.AddComponent<DBComponent>();
+            Log.Info($"Start Process {Game.Options.Process}");
             var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);
             foreach (StartSceneConfig startConfig in processScenes)
             {

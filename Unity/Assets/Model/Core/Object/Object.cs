@@ -16,6 +16,7 @@ namespace ET
         public static GameObject Global => GameObject.Find("/Global");
 
         [BsonIgnore]
+        [System.Runtime.Serialization.IgnoreDataMember]
         public GameObject ViewGO
         {
             get;
@@ -25,7 +26,7 @@ namespace ET
         public Object()
         {
 #if UNITY_EDITOR && VIEWGO
-            if (!this.GetType().IsDefined(typeof (HideInHierarchy), true) && Log.NeedLog)
+            if (!this.GetType().IsDefined(typeof (HideInHierarchy), true))//&& Log.NeedLog
             {
                 this.ViewGO = new GameObject();
                 this.ViewGO.name = this.GetType().Name;

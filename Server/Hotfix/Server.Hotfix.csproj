@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
     <RootNamespace>ET</RootNamespace>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
@@ -47,10 +47,47 @@
     <Compile Include="..\..\Unity\Assets\Hotfix\Module\Numeric\NumericWatcher_Hp_ShowUI.cs">
       <Link>Module\Numeric\NumericWatcher_Hp_ShowUI.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Assets\Hotfix\_Game\Module\AI\AiComponentSystem.cs">
+      <Link>_Game\Module\AI\AiComponentSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Hotfix\_Game\Module\AI\AiEntitySystem.cs">
+      <Link>_Game\Module\AI\AiEntitySystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Hotfix\_Game\Module\AI\Node\AttackHandler.cs">
+      <Link>_Game\Module\AI\Node\AttackHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Hotfix\_Game\Module\AI\Node\PatrolHandler.cs">
+      <Link>_Game\Module\AI\Node\PatrolHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Hotfix\_Game\Module\AI\Node\ReturnHandler.cs">
+      <Link>_Game\Module\AI\Node\ReturnHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Hotfix\_Game\Module\AOI\AoiComponentSystem.cs">
+      <Link>_Game\Module\AOI\AoiComponentSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Assets\Hotfix\_Game\Module\AOI\AoiEntitySystem.cs">
+      <Link>_Game\Module\AOI\AoiEntitySystem.cs</Link>
+    </Compile>
     <EmbeddedResource Remove="Other\**" />
     <None Remove="Other\**" />
+    <Compile Remove="_Game\Module\AI\Condition\**" />
+    <EmbeddedResource Remove="_Game\Module\AI\Condition\**" />
+    <None Remove="_Game\Module\AI\Condition\**" />
+    <Compile Remove="_Game\Module\AI\Node\**" />
+    <EmbeddedResource Remove="_Game\Module\AI\Node\**" />
+    <None Remove="_Game\Module\AI\Node\**" />
+    <Compile Remove="_Game\Module\AI\**" />
+    <EmbeddedResource Remove="_Game\Module\AI\**" />
+    <None Remove="_Game\Module\AI\**" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Server.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_Game\Handler\Gate" />
+    <Folder Include="_Game\Handler\Map" />
+    <Folder Include="_Game\Handler\Realm" />
+    <Folder Include="_Game\Handler\User" />
+    <Folder Include="_Game\Module\EnterGame\Handler" />
   </ItemGroup>
 </Project>

@@ -95,6 +95,7 @@ namespace ET
         
         public KService(ThreadSynchronizationContext threadSynchronizationContext, IPEndPoint ipEndPoint, ServiceType serviceType)
         {
+            Log.Info($"New KService Type:{ServiceType} IP:{ipEndPoint}");
             this.ServiceType = serviceType;
             this.ThreadSynchronizationContext = threadSynchronizationContext;
             this.StartTime = TimeHelper.ClientNow();
@@ -117,6 +118,7 @@ namespace ET
 
         public KService(ThreadSynchronizationContext threadSynchronizationContext, ServiceType serviceType)
         {
+            Log.Info($"New KService Type:{ServiceType}");
             this.ServiceType = serviceType;
             this.ThreadSynchronizationContext = threadSynchronizationContext;
             this.StartTime = TimeHelper.ClientNow();

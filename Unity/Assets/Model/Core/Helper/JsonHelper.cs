@@ -6,6 +6,11 @@ namespace ET
     {
 #if SERVER
         private static readonly MongoDB.Bson.IO.JsonWriterSettings logDefineSettings = new MongoDB.Bson.IO.JsonWriterSettings() { OutputMode = MongoDB.Bson.IO.JsonOutputMode.RelaxedExtendedJson };
+#else
+        static JsonHelper()
+        {
+            LitJson.UnityTypeBindings.Register();
+        }
 #endif
         
         public static string ToJson(object message)

@@ -14,6 +14,9 @@ namespace ET
 			self.loginBtn = rc.Get<GameObject>("LoginBtn");
 			self.loginBtn.GetComponent<Button>().onClick.AddListener(self.OnLogin);
 			self.account = rc.Get<GameObject>("Account");
+			
+			//进入登陆界面后尝试自动登陆
+			//LoginHelper.AutoLogin(self.ZoneScene());
 		}
 	}
 	
@@ -21,7 +24,7 @@ namespace ET
 	{
 		public static void OnLogin(this UILoginComponent self)
 		{
-			LoginHelper.Login(self.DomainScene(), "127.0.0.1:10002", self.account.GetComponent<InputField>().text).Coroutine();
+			LoginHelper.Login(self.DomainScene(), "127.0.0.1:11100", self.account.GetComponent<InputField>().text);
 		}
 	}
 }
